@@ -5,6 +5,8 @@ use defmt::info;
 use embassy_executor::Spawner;
 use embassy_time::{Duration, Timer};
 use esp_hal::clock::CpuClock;
+use esp_hal::rmt::Rmt;
+use esp_hal::time::Rate;
 use esp_hal::timer::systimer::SystemTimer;
 use esp_hal::timer::timg::TimerGroup;
 use panic_rtt_target as _;
@@ -34,6 +36,16 @@ async fn main(spawner: Spawner) {
         peripherals.RADIO_CLK,
     )
     .unwrap();
+
+    let rmt = Rmt::new(peripherals.RMT, Rate::from_mhz(80)).unwrap();
+    // TODO: Increase this to the number of LEDs you have
+    let buffer = esp_hal_smartled::smartLedBuffer!(1);
+    let _neopixel = esp_hal_smartled::SmartLedsAdapter::new(
+        rmt.channel0,
+        // TODO: Change this to the GPIO pin you have connected your NeoPixel to
+        peripherals.GPIO2,
+        buffer,
+    );
 
     // TODO: Spawn some tasks
     let _ = spawner;
