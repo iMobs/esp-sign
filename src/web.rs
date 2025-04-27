@@ -1,6 +1,7 @@
 use crate::WEB_TASK_POOL_SIZE;
 use embassy_time::Duration;
-use picoserve::{make_static, routing::get, AppBuilder, AppRouter, Router};
+use picoserve::{extract::Json, make_static, routing::get, AppBuilder, AppRouter, Router};
+use smart_leds::RGB8;
 
 pub struct Application;
 
@@ -8,8 +9,12 @@ impl AppBuilder for Application {
     type PathRouter = impl picoserve::routing::PathRouter;
 
     fn build_app(self) -> picoserve::Router<Self::PathRouter> {
-        picoserve::Router::new().route("/", get(|| async move { "Hello World" }))
+        picoserve::Router::new().route("/", get(|| async move { "Hello World" }).post(set_rgb))
     }
+}
+
+async fn set_rgb(Json(rgb): Json<RGB8, 0>) {
+    defmt::info!("Setting RGB to: {}, {}, {}", rgb.r, rgb.g, rgb.b);
 }
 
 pub async fn init_web(stack: embassy_net::Stack<'static>, spawner: &embassy_executor::Spawner) {
