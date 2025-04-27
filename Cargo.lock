@@ -689,6 +689,7 @@ dependencies = [
  "heapless",
  "panic-rtt-target",
  "picoserve",
+ "rgb",
  "rtt-target",
  "serde",
  "smart-leds",
@@ -1274,6 +1275,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "57397d16646700483b67d2dd6511d79318f9d057fdbd21a4066aeac8b41d310a"
 dependencies = [
  "bytemuck",
+ "defmt 0.3.100",
  "serde",
 ]
 

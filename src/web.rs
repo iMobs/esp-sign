@@ -1,7 +1,7 @@
 use crate::WEB_TASK_POOL_SIZE;
 use embassy_time::Duration;
 use picoserve::{extract::Json, make_static, routing::get, AppBuilder, AppRouter, Router};
-use smart_leds::RGB8;
+use rgb::RGB8;
 
 pub struct Application;
 
@@ -14,7 +14,7 @@ impl AppBuilder for Application {
 }
 
 async fn set_rgb(Json(rgb): Json<RGB8, 0>) {
-    defmt::info!("Setting RGB to: {}, {}, {}", rgb.r, rgb.g, rgb.b);
+    defmt::info!("Setting RGB to: {:?}", rgb);
 }
 
 pub async fn init_web(stack: embassy_net::Stack<'static>, spawner: &embassy_executor::Spawner) {
