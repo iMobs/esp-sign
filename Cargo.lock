@@ -690,6 +690,8 @@ dependencies = [
  "panic-rtt-target",
  "picoserve",
  "rtt-target",
+ "serde",
+ "serde-json-core",
  "smart-leds",
  "smoltcp",
  "static_cell",

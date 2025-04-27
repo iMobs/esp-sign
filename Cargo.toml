@@ -65,6 +65,8 @@ toml-cfg = "0.2.0"
 esp-hal-smartled = { git = "https://github.com/esp-rs/esp-hal-community" }
 smart-leds = "0.4.0"
 picoserve = { version = "0.15.1", features = ["defmt", "embassy"] }
+serde-json-core = "0.6.0"
+serde = { version = "1.0.219", default-features = false, features = ["derive"] }
 
 [profile.dev]
 # Rust debug is too slow.
