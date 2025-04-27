@@ -5,11 +5,13 @@ pub mod leds;
 pub mod web;
 pub mod wifi;
 
+use embassy_sync::{blocking_mutex::raw::CriticalSectionRawMutex, channel::Channel};
 pub use picoserve::make_static;
+use rgb::RGB8;
 
-pub(crate) const WEB_TASK_POOL_SIZE: usize = 4;
+const WEB_TASK_POOL_SIZE: usize = 4;
 // I think I need one extra for DHCP requests and other background tasks
-pub(crate) const WEB_SOCKET_SIZE: usize = WEB_TASK_POOL_SIZE + 1;
+const WEB_SOCKET_SIZE: usize = WEB_TASK_POOL_SIZE + 1;
 
 #[toml_cfg::toml_config]
 struct Config {
@@ -19,3 +21,6 @@ struct Config {
     #[default("")]
     wifi_password: &'static str,
 }
+
+type RgbChannel = Channel<CriticalSectionRawMutex, RGB8, 8>;
+static RGB_CHANNEL: RgbChannel = RgbChannel::new();

@@ -13,8 +13,9 @@ impl AppBuilder for Application {
     }
 }
 
-async fn set_rgb(Json(rgb): Json<RGB8, 0>) {
+async fn set_rgb(Json(rgb): Json<RGB8>) {
     defmt::info!("Setting RGB to: {:?}", rgb);
+    crate::RGB_CHANNEL.send(rgb).await;
 }
 
 pub async fn init_web(stack: embassy_net::Stack<'static>, spawner: &embassy_executor::Spawner) {

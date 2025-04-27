@@ -678,6 +678,7 @@ dependencies = [
  "defmt 1.0.1",
  "embassy-executor",
  "embassy-net",
+ "embassy-sync",
  "embassy-time",
  "embedded-io",
  "embedded-io-async",

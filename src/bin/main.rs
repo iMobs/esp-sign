@@ -39,7 +39,6 @@ async fn main(spawner: Spawner) {
 
     let stack = esp_sign::wifi::init_wifi(init, peripherals.WIFI, rng, &spawner).await;
 
-    esp_sign::leds::init_leds(peripherals.RMT, peripherals.GPIO2.degrade(), &spawner).await;
-
     esp_sign::web::init_web(stack, &spawner).await;
+    esp_sign::leds::init_leds(peripherals.RMT, peripherals.GPIO2.degrade(), &spawner).await;
 }
