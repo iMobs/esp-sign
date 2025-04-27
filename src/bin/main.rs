@@ -79,12 +79,26 @@ async fn main(spawner: Spawner) {
     let rmt = Rmt::new(peripherals.RMT, Rate::from_mhz(80)).unwrap();
     // TODO: Increase this to the number of LEDs you have
     let buffer = esp_hal_smartled::smartLedBuffer!(1);
-    let _neopixel = esp_hal_smartled::SmartLedsAdapter::new(
+    let mut neopixel = esp_hal_smartled::SmartLedsAdapter::new(
         rmt.channel0,
         // TODO: Change this to the GPIO pin you have connected your NeoPixel to
         peripherals.GPIO2,
         buffer,
     );
+
+    {
+        use smart_leds::{brightness, gamma, SmartLedsWrite, RGB8};
+
+        let data = [RGB8 {
+            // #d1dd6d
+            r: 0xD1,
+            g: 0xDD,
+            b: 0x6D,
+        }];
+        neopixel
+            .write(brightness(gamma(data.into_iter()), 0xFF))
+            .unwrap();
+    }
 
     // TODO: Spawn some tasks
     let _ = spawner;
