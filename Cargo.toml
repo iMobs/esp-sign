@@ -8,7 +8,7 @@ name = "esp-sign"
 path = "./src/bin/main.rs"
 
 [dependencies]
-defmt = "0.3.10"
+defmt = "1.0.1"
 embassy-net = { version = "0.6.0", features = [
   "dhcpv4",
   "medium-ethernet",
