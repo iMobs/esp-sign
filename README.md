@@ -37,3 +37,4 @@ If I get further along I plan on moving to a smaller board that doesn't have all
 
 - [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopixel-uberguide)
 - It's amazing what people [get away with selling on etsy](https://www.etsy.com/uk/listing/867821190/cyberpunk-2077-illuminable-afterlife). This is basically what I want to create and put on my wall.
+- [DIY Mini Neon](https://www.youtube.com/watch?v=i0Oduk7Lc60)
