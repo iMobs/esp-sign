@@ -5,8 +5,7 @@
 use defmt::info;
 use embassy_executor::Spawner;
 use esp_hal::clock::CpuClock;
-use esp_hal::rmt::Rmt;
-use esp_hal::time::Rate;
+use esp_hal::gpio::Pin;
 use esp_hal::timer::systimer::SystemTimer;
 use esp_hal::timer::timg::TimerGroup;
 use esp_sign::make_static;
@@ -40,29 +39,7 @@ async fn main(spawner: Spawner) {
 
     let stack = esp_sign::wifi::init_wifi(init, peripherals.WIFI, rng, &spawner).await;
 
-    let rmt = Rmt::new(peripherals.RMT, Rate::from_mhz(80)).unwrap();
-    // TODO: Increase this to the number of LEDs you have
-    let buffer = esp_hal_smartled::smartLedBuffer!(1);
-    let mut neopixel = esp_hal_smartled::SmartLedsAdapter::new(
-        rmt.channel0,
-        // TODO: Change this to the GPIO pin you have connected your NeoPixel to
-        peripherals.GPIO2,
-        buffer,
-    );
-
-    {
-        use smart_leds::{brightness, gamma, SmartLedsWrite, RGB8};
-
-        let data = [RGB8 {
-            // #d1dd6d
-            r: 0xD1,
-            g: 0xDD,
-            b: 0x6D,
-        }];
-        neopixel
-            .write(brightness(gamma(data.into_iter()), 0xFF))
-            .unwrap();
-    }
+    esp_sign::leds::init_leds(peripherals.RMT, peripherals.GPIO2.degrade(), &spawner).await;
 
     esp_sign::web::init_web(stack, &spawner).await;
 }
