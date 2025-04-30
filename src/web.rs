@@ -18,7 +18,7 @@ async fn set_rgb(Json(rgb): Json<RGB8>) {
     crate::RGB_CHANNEL.send(rgb).await;
 }
 
-pub async fn init_web(stack: embassy_net::Stack<'static>, spawner: &embassy_executor::Spawner) {
+pub fn init_web(stack: embassy_net::Stack<'static>, spawner: &embassy_executor::Spawner) {
     let web_app = WebApp::default();
 
     for id in 0..WEB_TASK_POOL_SIZE {

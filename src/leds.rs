@@ -19,7 +19,7 @@ const LED_COUNT: usize = 1;
 //  ) + 1 additional pulse for the end delimiter
 const LED_BUFFER_SIZE: usize = LED_COUNT * 24 + 1;
 
-pub async fn init_leds(rmt: esp_hal::peripherals::RMT, pin: AnyPin, spawner: &Spawner) {
+pub fn init_leds(rmt: esp_hal::peripherals::RMT, pin: AnyPin, spawner: &Spawner) {
     let rmt = Rmt::new(rmt, Rate::from_mhz(80)).unwrap();
 
     let buffer = [0; LED_BUFFER_SIZE];
