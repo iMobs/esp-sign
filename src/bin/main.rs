@@ -4,6 +4,7 @@
 
 use defmt::info;
 use embassy_executor::Spawner;
+use embassy_time::Timer;
 use esp_hal::clock::CpuClock;
 use esp_hal::gpio::Pin;
 use esp_hal::timer::systimer::SystemTimer;
@@ -40,5 +41,18 @@ async fn main(spawner: Spawner) {
     let stack = esp_sign::wifi::init_wifi(init, peripherals.WIFI, rng, &spawner).await;
 
     esp_sign::web::init_web(stack, &spawner).await;
-    esp_sign::leds::init_leds(peripherals.RMT, peripherals.GPIO2.degrade(), &spawner).await;
+    esp_sign::leds::init_leds(peripherals.RMT, peripherals.GPIO0.degrade(), &spawner).await;
+
+    let mut status_led = esp_hal::gpio::Output::new(
+        peripherals.GPIO8,
+        esp_hal::gpio::Level::Low,
+        esp_hal::gpio::OutputConfig::default().with_pull(esp_hal::gpio::Pull::Down),
+    );
+
+    loop {
+        status_led.set_low();
+        Timer::after_millis(100).await;
+        status_led.set_high();
+        Timer::after_millis(900).await;
+    }
 }

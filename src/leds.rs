@@ -6,10 +6,11 @@ use esp_hal::{
     Blocking,
 };
 use esp_hal_smartled::SmartLedsAdapter;
+use rgb::RGB8;
 use smart_leds::{brightness, gamma, SmartLedsWrite};
 
 // TODO: Change this to the right number of LEDs
-const LED_COUNT: usize = 1;
+const LED_COUNT: usize = 10;
 // Copied from smartLedBuffer! macro
 // The size we're assigning here is calculated as following
 //  (
@@ -30,9 +31,14 @@ pub async fn init_leds(rmt: esp_hal::peripherals::RMT, pin: AnyPin, spawner: &Sp
 
 #[embassy_executor::task]
 async fn led_task(mut neopixel: SmartLedsAdapter<Channel<Blocking, 0>, LED_BUFFER_SIZE>) {
+    let mut data = [RGB8::new(0xD1, 0xDD, 0xF1); LED_COUNT];
+    neopixel
+        .write(brightness(gamma(data.into_iter()), 0xFF))
+        .unwrap();
+
     loop {
         let rgb = crate::RGB_CHANNEL.receive().await;
-        let data = [rgb; LED_COUNT];
+        data = [rgb; LED_COUNT];
         neopixel
             .write(brightness(gamma(data.into_iter()), 0xFF))
             .unwrap();
