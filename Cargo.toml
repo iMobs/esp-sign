@@ -9,7 +9,7 @@ path = "./src/bin/main.rs"
 
 [dependencies]
 defmt = "1.0.1"
-embassy-net = { version = "0.6.0", features = [
+embassy-net = { version = "0.7.0", features = [
   "defmt",
   "dhcpv4",
   "medium-ethernet",
