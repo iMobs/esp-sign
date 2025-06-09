@@ -18,7 +18,7 @@ embassy-net = { version = "0.7.0", features = [
 ] }
 embedded-io = "0.6.1"
 embedded-io-async = "0.6.1"
-esp-alloc = "0.7.0"
+esp-alloc = "0.8.0"
 esp-hal = { version = "1.0.0-beta.0", features = [
   "defmt",
   "esp32c3",
