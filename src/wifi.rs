@@ -9,7 +9,7 @@ use esp_wifi::{
 
 pub async fn init_wifi(
     esp_wifi_ctrl: &'static EspWifiController<'static>,
-    wifi: esp_hal::peripherals::WIFI,
+    wifi: esp_hal::peripherals::WIFI<'static>,
     mut rng: esp_hal::rng::Rng,
     spawner: &Spawner,
 ) -> Stack<'static> {
@@ -57,8 +57,8 @@ async fn connection(mut controller: WifiController<'static>) {
         }
         if !matches!(controller.is_started(), Ok(true)) {
             let client_config = Configuration::Client(ClientConfiguration {
-                ssid: SSID.try_into().unwrap(),
-                password: PASSWORD.try_into().unwrap(),
+                ssid: SSID.into(),
+                password: PASSWORD.into(),
                 ..Default::default()
             });
             controller.set_configuration(&client_config).unwrap();
