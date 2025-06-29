@@ -60,7 +60,7 @@ esp-wifi = { version = "0.14.1", features = [
   "wifi",
 ] }
 heapless = { version = "0.8.0", default-features = false }
-static_cell = { version = "2.1.0", features = ["nightly"] }
+static_cell = { version = "2.1.1", features = ["nightly"] }
 toml-cfg = "0.2.0"
 esp-hal-smartled = "0.15.0"
 smart-leds = "0.4.0"
