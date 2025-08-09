@@ -1,9 +1,8 @@
 use embassy_executor::Spawner;
 use esp_hal::{
     gpio::AnyPin,
-    rmt::{Channel, Rmt},
+    rmt::{ConstChannelAccess, Rmt, Tx},
     time::Rate,
-    Blocking,
 };
 use esp_hal_smartled::SmartLedsAdapter;
 use rgb::RGB8;
@@ -29,8 +28,10 @@ pub async fn init_leds(rmt: esp_hal::peripherals::RMT<'_>, pin: AnyPin<'_>, spaw
     spawner.must_spawn(led_task(neopixel));
 }
 
+type Neopixel = SmartLedsAdapter<ConstChannelAccess<Tx, 0>, LED_BUFFER_SIZE>;
+
 #[embassy_executor::task]
-async fn led_task(mut neopixel: SmartLedsAdapter<Channel<Blocking, 0>, LED_BUFFER_SIZE>) {
+async fn led_task(mut neopixel: Neopixel) {
     let mut data = [RGB8::new(0xD1, 0xDD, 0xF1); LED_COUNT];
     neopixel
         .write(brightness(gamma(data.into_iter()), 0xFF))

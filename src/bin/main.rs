@@ -35,7 +35,7 @@ async fn main(spawner: Spawner) {
     let timer1 = TimerGroup::new(peripherals.TIMG0);
     let init = make_static!(
         EspWifiController<'static>,
-        esp_wifi::init(timer1.timer0, rng, peripherals.RADIO_CLK).unwrap()
+        esp_wifi::init(timer1.timer0, rng).unwrap()
     );
 
     let stack = esp_sign::wifi::init_wifi(init, peripherals.WIFI, rng, &spawner).await;
