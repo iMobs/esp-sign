@@ -1,4 +1,4 @@
-use defmt::{debug, error, info};
+use defmt::{debug, error, info, unwrap};
 use embassy_executor::Spawner;
 use embassy_net::{Runner, Stack, StackResources};
 use embassy_time::Timer;
@@ -13,7 +13,7 @@ pub async fn init_wifi(
     mut rng: esp_hal::rng::Rng,
     spawner: &Spawner,
 ) -> Stack<'static> {
-    let (controller, interfaces) = esp_wifi::wifi::new(esp_wifi_ctrl, wifi).unwrap();
+    let (controller, interfaces) = unwrap!(esp_wifi::wifi::new(esp_wifi_ctrl, wifi));
     let wifi_interface = interfaces.sta;
 
     let net_config = embassy_net::Config::dhcpv4(Default::default());
@@ -61,9 +61,9 @@ async fn connection(mut controller: WifiController<'static>) {
                 password: PASSWORD.into(),
                 ..Default::default()
             });
-            controller.set_configuration(&client_config).unwrap();
+            unwrap!(controller.set_configuration(&client_config));
             debug!("Starting wifi");
-            controller.start_async().await.unwrap();
+            unwrap!(controller.start_async().await);
             debug!("Wifi started!");
         }
         debug!("About to connect...");
