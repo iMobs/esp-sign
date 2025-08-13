@@ -1,6 +1,12 @@
 use crate::WEB_TASK_POOL_SIZE;
 use embassy_time::Duration;
-use picoserve::{extract::Form, make_static, routing::get_service, AppBuilder, AppRouter, Router};
+use picoserve::{
+    extract::Json,
+    make_static,
+    routing::get_service,
+    AppBuilder, AppRouter, Router,
+};
+use rgb::ComponentSlice;
 
 pub struct Application;
 
@@ -10,15 +16,23 @@ impl AppBuilder for Application {
     fn build_app(self) -> picoserve::Router<Self::PathRouter> {
         picoserve::Router::new().route(
             "/",
-            get_service(picoserve::response::File::html(include_str!("index.html"))).post(
-                |Form(rgb)| async move {
-                    defmt::info!("Setting RGB to: {:?}", rgb);
-                    crate::RGB_CHANNEL.send(rgb).await;
-                    picoserve::response::Redirect::to("/")
-                },
-            ),
+            get_service(picoserve::response::File::html(include_str!("index.html")))
+                .post(set_color),
         )
     }
+}
+
+#[derive(Debug, serde::Deserialize)]
+struct FormData {
+    color: heapless::String<32>,
+}
+
+async fn set_color(Json(data): Json<FormData>) -> Json<&'static str> {
+    let mut rgb = rgb::RGB8::default();
+    hex::decode_to_slice(&data.color[1..], rgb.as_mut_slice()).unwrap();
+    defmt::info!("Setting RGB to: {:?}", rgb);
+    crate::RGB_CHANNEL.send(rgb).await;
+    Json("ok")
 }
 
 pub async fn init_web(stack: embassy_net::Stack<'static>, spawner: &embassy_executor::Spawner) {
