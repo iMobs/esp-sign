@@ -12,6 +12,9 @@ defmt = "1.0.1"
 embassy-net = { version = "0.7.0", features = [
   "defmt",
   "dhcpv4",
+  "dhcpv4-hostname",
+  "dns",
+  "mdns",
   "medium-ethernet",
   "tcp",
   "udp",

@@ -11,7 +11,7 @@ use rgb::RGB8;
 
 const WEB_TASK_POOL_SIZE: usize = 4;
 // I think I need one extra for DHCP requests and other background tasks
-const WEB_SOCKET_SIZE: usize = WEB_TASK_POOL_SIZE + 1;
+const WEB_SOCKET_SIZE: usize = WEB_TASK_POOL_SIZE + 2;
 
 #[toml_cfg::toml_config]
 struct Config {

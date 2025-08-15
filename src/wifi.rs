@@ -16,7 +16,10 @@ pub async fn init_wifi(
     let (controller, interfaces) = unwrap!(esp_wifi::wifi::new(esp_wifi_ctrl, wifi));
     let wifi_interface = interfaces.sta;
 
-    let net_config = embassy_net::Config::dhcpv4(Default::default());
+    let mut dhcp_config = embassy_net::DhcpConfig::default();
+    let hostname = unwrap!("esp32.local".try_into());
+    dhcp_config.hostname = Some(hostname);
+    let net_config = embassy_net::Config::dhcpv4(dhcp_config);
     let net_seed = ((rng.random() as u64) << 32) | rng.random() as u64;
 
     // Init network stack
