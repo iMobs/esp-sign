@@ -72,7 +72,7 @@ smart-leds = "0.4.0"
 picoserve = { version = "0.16.0", features = ["defmt", "embassy"] }
 serde = { version = "1.0.219", default-features = false, features = ["derive"] }
 rgb = { version = "0.8.52", features = ["defmt-03", "serde"] }
-embassy-sync = "0.7.0"
+embassy-sync = "0.7.1"
 embassy-futures = "0.1.1"
 hex = { version = "0.4.3", default-features = false }
 
