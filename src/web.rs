@@ -1,11 +1,6 @@
 use crate::WEB_TASK_POOL_SIZE;
 use embassy_time::Duration;
-use picoserve::{
-    extract::Json,
-    make_static,
-    routing::get_service,
-    AppBuilder, AppRouter, Router,
-};
+use picoserve::{extract::Json, make_static, routing::get_service, AppBuilder, AppRouter, Router};
 use rgb::ComponentSlice;
 
 pub struct Application;
