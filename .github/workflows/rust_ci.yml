@@ -29,8 +29,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-      - name: Setup Rust
-        run: rustup toolchain install
       - name: Enable caching
         uses: Swatinem/rust-cache@v2
       - name: Run command
