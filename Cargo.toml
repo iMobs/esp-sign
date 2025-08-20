@@ -56,7 +56,7 @@ esp-wifi = { version = "0.15.0", features = [
   "esp32c3",
   "wifi",
 ] }
-heapless = { version = "0.8.0", default-features = false }
+heapless = { version = "0.9.1", default-features = false, features = ["serde"] }
 static_cell = { version = "2.1.1", features = ["nightly"] }
 toml-cfg = "0.2.0"
 esp-hal-smartled = { version = "0.15.0", features = ["defmt"] }
