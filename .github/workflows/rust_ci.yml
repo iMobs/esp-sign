@@ -30,11 +30,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
       - name: Setup Rust
-        uses: dtolnay/rust-toolchain@v1
-        with:
-          target: riscv32imc-unknown-none-elf
-          toolchain: nightly-2025-08-01
-          components: rust-src, rustfmt, clippy
+        run: rustup toolchain install
       - name: Enable caching
         uses: Swatinem/rust-cache@v2
       - name: Run command
