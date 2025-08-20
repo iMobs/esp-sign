@@ -15,8 +15,8 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 3
-  - package-ecosystem: "rust-toolchain"
-    dicrectory: "/"
+  - package-ecosystem: "rust-toolchain" # See documentation for possible values
+    directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 3
