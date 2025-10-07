@@ -69,7 +69,7 @@ checksum = "fa7f7c19df9648c1da4f5356c4256533e38bd65633b6a41654922475a1c6d777"
 dependencies = [
  "defmt 1.0.1",
  "embassy-sync 0.7.2",
- "embedded-io",
+ "embedded-io 0.6.1",
  "embedded-io-async",
  "futures-intrusive",
  "heapless 0.8.0",
@@ -459,13 +459,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "embedded-io"
+version = "0.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9eb1aa714776b75c7e67e1da744b81a129b3ff919c8712b5e1b32252c1f07cc7"
+
+[[package]]
 name = "embedded-io-async"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3ff09972d4073aa8c299395be75161d582e7629cd663171d62af73c8d50dba3f"
 dependencies = [
  "defmt 0.3.100",
- "embedded-io",
+ "embedded-io 0.6.1",
 ]
 
 [[package]]
@@ -578,7 +584,7 @@ dependencies = [
  "embedded-can",
  "embedded-hal 1.0.0",
  "embedded-hal-async",
- "embedded-io",
+ "embedded-io 0.6.1",
  "embedded-io-async",
  "enumset",
  "esp-config",
@@ -713,7 +719,7 @@ dependencies = [
  "embassy-net",
  "embassy-sync 0.7.2",
  "embassy-time 0.4.0",
- "embedded-io",
+ "embedded-io 0.7.1",
  "embedded-io-async",
  "esp-alloc",
  "esp-hal",
@@ -746,7 +752,7 @@ dependencies = [
  "defmt 1.0.1",
  "document-features",
  "embassy-net-driver",
- "embedded-io",
+ "embedded-io 0.6.1",
  "embedded-io-async",
  "enumset",
  "esp-alloc",
@@ -1131,7 +1137,7 @@ dependencies = [
  "data-encoding",
  "defmt 0.3.100",
  "embassy-net",
- "embassy-time 0.4.0",
+ "embassy-time 0.5.0",
  "embedded-io-async",
  "futures-util",
  "heapless 0.8.0",

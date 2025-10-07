@@ -19,7 +19,7 @@ embassy-net = { version = "0.7.1", features = [
   "tcp",
   "udp",
 ] }
-embedded-io = "0.6.1"
+embedded-io = "0.7.1"
 embedded-io-async = "0.6.1"
 esp-alloc = "0.8.0"
 esp-hal = { version = "1.0.0-rc.0", features = [
