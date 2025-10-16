@@ -28,7 +28,7 @@ esp-hal = { version = "1.0.0-rc.0", features = [
   "unstable",
 ] }
 panic-rtt-target = { version = "0.2.0", features = ["defmt"] }
-rtt-target = { version = "0.6.1", features = ["defmt"] }
+rtt-target = { version = "0.6.2", features = ["defmt"] }
 smoltcp = { version = "0.12.0", default-features = false, features = [
   "medium-ethernet",
   "multicast",
