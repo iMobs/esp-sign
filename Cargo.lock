@@ -21,6 +21,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
+name = "base64"
+version = "0.13.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9e1b586273c5702936fe7b7d6896644d8be71e6314cfe09d3167c95f712589e8"
+
+[[package]]
 name = "basic-toml"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -46,7 +52,7 @@ checksum = "3787a07661997bfc05dd3431e379c0188573f78857080cf682e1393ab8e4d64c"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -94,6 +100,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9555578bc9e57714c812a1f84e4fc5b4d21fcb063490c624de019f7464c91268"
 
 [[package]]
+name = "const-default"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0b396d1f76d455557e1218ec8066ae14bba60b4b36ecd55577ba979f5db7ecaa"
+
+[[package]]
 name = "const-sha1"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -136,7 +148,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "strsim",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -147,7 +159,7 @@ checksum = "fc34b93ccb385b40dc71c6fceac4b2ad23662c7eeb248cf10d529b7e055b6ead"
 dependencies = [
  "darling_core",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -185,7 +197,7 @@ dependencies = [
  "proc-macro-error2",
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -205,7 +217,7 @@ checksum = "6178a82cf56c836a3ba61a7935cdb1c49bfaa6fa4327cd5bf554a503087de26b"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -282,7 +294,7 @@ dependencies = [
  "darling",
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -521,7 +533,7 @@ dependencies = [
  "darling",
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -545,16 +557,45 @@ dependencies = [
 ]
 
 [[package]]
+name = "esp-alloc"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "641e43d6a60244429117ef2fa7a47182120c7561336ea01f6fb08d634f46bae1"
+dependencies = [
+ "allocator-api2",
+ "cfg-if",
+ "document-features",
+ "enumset",
+ "esp-config 0.6.0",
+ "esp-sync",
+ "linked_list_allocator",
+ "rlsf",
+]
+
+[[package]]
 name = "esp-config"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "abd4a8db4b72794637a25944bc8d361c3cc271d4f03987ce8741312b6b61529c"
 dependencies = [
  "document-features",
- "esp-metadata-generated",
+ "esp-metadata-generated 0.1.0",
  "evalexpr",
  "serde",
  "serde_yaml",
+]
+
+[[package]]
+name = "esp-config"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "289fde78fff1ff500e81efbdf958b1dae1614eacc61cc5560b0a3e03a25f266e"
+dependencies = [
+ "document-features",
+ "esp-metadata-generated 0.2.0",
+ "serde",
+ "serde_yaml",
+ "somni-expr",
 ]
 
 [[package]]
@@ -581,9 +622,9 @@ dependencies = [
  "embedded-io",
  "embedded-io-async",
  "enumset",
- "esp-config",
+ "esp-config 0.5.0",
  "esp-hal-procmacros",
- "esp-metadata-generated",
+ "esp-metadata-generated 0.1.0",
  "esp-riscv-rt",
  "esp-rom-sys",
  "esp32",
@@ -600,11 +641,11 @@ dependencies = [
  "portable-atomic",
  "rand_core 0.6.4",
  "rand_core 0.9.3",
- "riscv",
+ "riscv 0.12.1",
  "serde",
  "strum",
  "ufmt-write",
- "xtensa-lx",
+ "xtensa-lx 0.12.0",
  "xtensa-lx-rt",
 ]
 
@@ -622,10 +663,10 @@ dependencies = [
  "embassy-time 0.4.0",
  "embassy-time-driver",
  "embassy-time-queue-utils",
- "esp-config",
+ "esp-config 0.5.0",
  "esp-hal",
  "esp-hal-procmacros",
- "esp-metadata-generated",
+ "esp-metadata-generated 0.1.0",
  "portable-atomic",
  "static_cell",
 ]
@@ -641,7 +682,7 @@ dependencies = [
  "proc-macro-crate",
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
  "termcolor",
 ]
 
@@ -681,13 +722,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "esp-metadata-generated"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b18b1787dd3adea642fb529dd83fe558a08ace365bbaede4643a8959992900f4"
+
+[[package]]
 name = "esp-riscv-rt"
 version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9a00370dfcb0ccc01c6b2540076379c6efd6890a27f584de217c38e3239e19d5"
 dependencies = [
  "document-features",
- "riscv",
+ "riscv 0.12.1",
  "riscv-rt-macros",
 ]
 
@@ -699,7 +746,7 @@ checksum = "646aca2b30503b6c6f34250255fbd5887fd0c4104ea90802c1fea34f3035e7d6"
 dependencies = [
  "cfg-if",
  "document-features",
- "esp-metadata-generated",
+ "esp-metadata-generated 0.1.0",
 ]
 
 [[package]]
@@ -715,7 +762,7 @@ dependencies = [
  "embassy-time 0.4.0",
  "embedded-io",
  "embedded-io-async",
- "esp-alloc",
+ "esp-alloc 0.9.0",
  "esp-hal",
  "esp-hal-embassy",
  "esp-hal-smartled",
@@ -734,6 +781,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "esp-sync"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b977b028ae5959f0b2daf6602a1d751723b2d329c7251daf869ad382c8ed1543"
+dependencies = [
+ "cfg-if",
+ "document-features",
+ "embassy-sync 0.6.2",
+ "embassy-sync 0.7.2",
+ "esp-metadata-generated 0.2.0",
+ "riscv 0.15.0",
+ "xtensa-lx 0.13.0",
+]
+
+[[package]]
 name = "esp-wifi"
 version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -749,10 +811,10 @@ dependencies = [
  "embedded-io",
  "embedded-io-async",
  "enumset",
- "esp-alloc",
- "esp-config",
+ "esp-alloc 0.8.0",
+ "esp-config 0.5.0",
  "esp-hal",
- "esp-metadata-generated",
+ "esp-metadata-generated 0.1.0",
  "esp-wifi-sys",
  "num-derive",
  "num-traits",
@@ -1016,7 +1078,7 @@ dependencies = [
  "indoc",
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -1030,6 +1092,12 @@ name = "lhash"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "744a4c881f502e98c2241d2e5f50040ac73b30194d64452bb6260393b53f0dc9"
+
+[[package]]
+name = "libc"
+version = "0.2.177"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2874a2af47a2325c2001a6e6fad9b16a53b802102b528163885171cf92b15976"
 
 [[package]]
 name = "linked_list_allocator"
@@ -1091,7 +1159,7 @@ checksum = "ed3955f1a9c7c0c15e092f9c887db08b1fc683305fdf6eb6684f22555355e202"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -1131,7 +1199,7 @@ dependencies = [
  "data-encoding",
  "defmt 0.3.100",
  "embassy-net",
- "embassy-time 0.4.0",
+ "embassy-time 0.5.0",
  "embedded-io-async",
  "futures-util",
  "heapless 0.8.0",
@@ -1151,7 +1219,7 @@ checksum = "82a7350bdbef1ef80e4f058b89ca974dcc6526b04ac4d2095763b69760abf7ea"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -1190,7 +1258,7 @@ checksum = "a33fa6ec7f2047f572d49317cca19c87195de99c6e5b6ee492da701cfe02b053"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -1221,7 +1289,7 @@ dependencies = [
  "proc-macro-error-attr2",
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -1280,7 +1348,20 @@ dependencies = [
  "critical-section",
  "embedded-hal 1.0.0",
  "paste",
- "riscv-macros",
+ "riscv-macros 0.1.0",
+ "riscv-pac",
+]
+
+[[package]]
+name = "riscv"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b05cfa3f7b30c84536a9025150d44d26b8e1cc20ddf436448d74cd9591eefb25"
+dependencies = [
+ "critical-section",
+ "embedded-hal 1.0.0",
+ "paste",
+ "riscv-macros 0.3.0",
  "riscv-pac",
 ]
 
@@ -1292,7 +1373,18 @@ checksum = "f265be5d634272320a7de94cea15c22a3bfdd4eb42eb43edc528415f066a1f25"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
+]
+
+[[package]]
+name = "riscv-macros"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7d323d13972c1b104aa036bc692cd08b822c8bbf23d79a27c526095856499799"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -1309,7 +1401,19 @@ checksum = "fc71814687c45ba4cd1e47a54e03a2dbc62ca3667098fbae9cc6b423956758fa"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
+]
+
+[[package]]
+name = "rlsf"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "222fb240c3286247ecdee6fa5341e7cdad0ffdf8e7e401d9937f2d58482a20bf"
+dependencies = [
+ "cfg-if",
+ "const-default",
+ "libc",
+ "svgbobdoc",
 ]
 
 [[package]]
@@ -1365,7 +1469,7 @@ checksum = "5b0276cf7f2c73365f7157c8123c21cd9a50fbbd844757af28ca1f5925fc2a00"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -1423,6 +1527,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "somni-expr"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3ed9b7648d5e8b2df6c5e49940c54bcdd2b4dd71eafc6e8f1c714eb4581b0f53"
+dependencies = [
+ "somni-parser",
+]
+
+[[package]]
+name = "somni-parser"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "74ee90f60ebcade244355ed4ff4077e364b251508c3462af386a9ee96c5a5492"
+
+[[package]]
 name = "stable_deref_trait"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1461,7 +1580,31 @@ dependencies = [
  "heck 0.5.0",
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
+]
+
+[[package]]
+name = "svgbobdoc"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f2c04b93fc15d79b39c63218f15e3fdffaa4c227830686e3b7c5f41244eb3e50"
+dependencies = [
+ "base64",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+ "unicode-width",
+]
+
+[[package]]
+name = "syn"
+version = "1.0.109"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b64191b275b66ffe2469e8af2c1cfe3bafa67b529ead792a6d0160888b4237"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "unicode-ident",
 ]
 
 [[package]]
@@ -1501,7 +1644,7 @@ checksum = "7f7cf42b4507d8ea322120659672cf1b9dbb93f8f2d4ecfd6e51350ff5b17a1d"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -1526,7 +1669,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde",
- "syn",
+ "syn 2.0.104",
  "toml",
 ]
 
@@ -1576,6 +1719,12 @@ name = "unicode-ident"
 version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5a5f39404a5da50712a4c1eecf25e90dd62b613502b7e925fd4e4d19b5c96512"
+
+[[package]]
+name = "unicode-width"
+version = "0.1.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7dd6e30e90baa6f72411720665d41d89b9a3d039dc45b8faea1ddd07f617f6af"
 
 [[package]]
 name = "unsafe-libyaml"
@@ -1702,6 +1851,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "xtensa-lx"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e012d667b0aa6d2592ace8ef145a98bff3e76cca7a644f4181ecd7a916ed289b"
+dependencies = [
+ "critical-section",
+]
+
+[[package]]
 name = "xtensa-lx-rt"
 version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1709,7 +1867,7 @@ checksum = "520a8fb0121eb6868f4f5ff383e262dc863f9042496724e01673a98a9b7e6c2b"
 dependencies = [
  "document-features",
  "r0",
- "xtensa-lx",
+ "xtensa-lx 0.12.0",
  "xtensa-lx-rt-proc-macros",
 ]
 
@@ -1721,5 +1879,5 @@ checksum = "c5a56a616147f5947ceb673790dd618d77b30e26e677f4a896df049d73059438"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.104",
 ]
