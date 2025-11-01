@@ -2,18 +2,22 @@ use defmt::{debug, error, info, unwrap};
 use embassy_executor::Spawner;
 use embassy_net::{Runner, Stack, StackResources};
 use embassy_time::Timer;
-use esp_wifi::{
-    wifi::{ClientConfiguration, Configuration, WifiController, WifiDevice, WifiEvent, WifiState},
-    EspWifiController,
+use esp_radio::{
+    Controller,
+    wifi::{ClientConfig, ModeConfig, WifiController, WifiDevice, WifiEvent, WifiStaState},
 };
 
 pub async fn init_wifi(
-    esp_wifi_ctrl: &'static EspWifiController<'static>,
+    esp_wifi_ctrl: &'static Controller<'static>,
     wifi: esp_hal::peripherals::WIFI<'static>,
-    mut rng: esp_hal::rng::Rng,
+    rng: esp_hal::rng::Rng,
     spawner: &Spawner,
 ) -> Stack<'static> {
-    let (controller, interfaces) = unwrap!(esp_wifi::wifi::new(esp_wifi_ctrl, wifi));
+    let (controller, interfaces) = unwrap!(esp_radio::wifi::new(
+        esp_wifi_ctrl,
+        wifi,
+        Default::default()
+    ));
     let wifi_interface = interfaces.sta;
 
     let mut dhcp_config = embassy_net::DhcpConfig::default();
@@ -53,18 +57,18 @@ async fn connection(mut controller: WifiController<'static>) {
     debug!("Device capabilities: {:?}", controller.capabilities());
 
     loop {
-        if esp_wifi::wifi::wifi_state() == WifiState::StaConnected {
+        if esp_radio::wifi::sta_state() == WifiStaState::Connected {
             // wait until we're no longer connected
             controller.wait_for_event(WifiEvent::StaDisconnected).await;
             Timer::after_secs(5).await
         }
         if !matches!(controller.is_started(), Ok(true)) {
-            let client_config = Configuration::Client(ClientConfiguration {
-                ssid: SSID.into(),
-                password: PASSWORD.into(),
-                ..Default::default()
-            });
-            unwrap!(controller.set_configuration(&client_config));
+            let client_config = ModeConfig::Client(
+                ClientConfig::default()
+                    .with_ssid(SSID.into())
+                    .with_password(PASSWORD.into()),
+            );
+            unwrap!(controller.set_config(&client_config));
             debug!("Starting wifi");
             unwrap!(controller.start_async().await);
             debug!("Wifi started!");
