@@ -71,7 +71,7 @@ embassy-time = { version = "0.5.0", features = ["defmt"] }
 heapless = { version = "0.9.1", default-features = false, features = ["serde"] }
 static_cell = { version = "2.1.1", features = ["nightly"] }
 toml-cfg = "0.2.0"
-# esp-hal-smartled = { version = "0.16.0", features = ["defmt"] }
+esp-hal-smartled = { version = "0.17.0", features = ["defmt"] }
 smart-leds = "0.4.0"
 picoserve = { version = "0.16.0", features = ["defmt", "embassy"] }
 serde = { version = "1.0.219", default-features = false, features = ["derive"] }
@@ -88,7 +88,7 @@ embedded-test = { version = "0.7.0-alpha.3", git = "https://github.com/probe-rs/
 ] }
 
 [patch.crates-io]
-# esp-hal-smartled = { git = "https://github.com/esp-rs/esp-hal-community" }
+esp-hal-smartled = { git = "https://github.com/esp-rs/esp-hal-community" }
 
 [profile.dev]
 # Rust debug is too slow.
