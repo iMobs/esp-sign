@@ -73,7 +73,7 @@ static_cell = { version = "2.1.1", features = ["nightly"] }
 toml-cfg = "0.2.0"
 esp-hal-smartled = { version = "0.17.0", features = ["defmt"] }
 smart-leds = "0.4.0"
-picoserve = { version = "0.16.0", features = ["defmt", "embassy"] }
+picoserve = { version = "0.17.1", features = ["defmt", "embassy", "json"] }
 serde = { version = "1.0.219", default-features = false, features = ["derive"] }
 rgb = { version = "0.8.52", features = ["defmt-03", "serde"] }
 embassy-sync = "0.7.2"

@@ -1,6 +1,8 @@
 use crate::WEB_TASK_POOL_SIZE;
 use embassy_time::Duration;
-use picoserve::{AppBuilder, AppRouter, Router, extract::Json, make_static, routing::get_service};
+use picoserve::{
+    AppBuilder, AppRouter, Router, Server, extract::Json, make_static, routing::get_service,
+};
 use rgb::ComponentSlice;
 
 pub struct Application;
@@ -50,17 +52,10 @@ async fn web_task(
     let mut tcp_tx_buffer = [0; 1024];
     let mut http_buffer = [0; 2048];
 
-    picoserve::listen_and_serve(
-        id,
-        app,
-        config,
-        stack,
-        port,
-        &mut tcp_rx_buffer,
-        &mut tcp_tx_buffer,
-        &mut http_buffer,
-    )
-    .await
+    Server::new(app, config, &mut http_buffer)
+        .listen_and_serve(id, stack, port, &mut tcp_rx_buffer, &mut tcp_tx_buffer)
+        .await
+        .into_never()
 }
 
 pub struct WebApp {
