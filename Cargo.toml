@@ -68,7 +68,7 @@ critical-section = "1.2.0"
 # for more networking protocol support see https://crates.io/crates/edge-net
 embassy-executor = { version = "0.9.1", features = ["defmt"] }
 embassy-time = { version = "0.5.0", features = ["defmt"] }
-heapless = { version = "0.9.1", default-features = false, features = ["serde"] }
+heapless = { version = "0.9.2", default-features = false, features = ["serde"] }
 static_cell = { version = "2.1.1", features = ["nightly"] }
 toml-cfg = "0.2.0"
 esp-hal-smartled = { version = "0.17.0", features = ["defmt"] }
