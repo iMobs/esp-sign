@@ -28,7 +28,7 @@ jobs:
             args: --all-features --workspace -- -D warnings
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Enable caching
         uses: Swatinem/rust-cache@v2
       - name: Run command
