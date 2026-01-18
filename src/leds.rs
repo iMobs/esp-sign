@@ -1,6 +1,7 @@
 use embassy_executor::Spawner;
 use esp_hal::{gpio::AnyPin, rmt::Rmt, time::Rate};
 use esp_hal_smartled::{SmartLedsAdapterAsync, buffer_size_async};
+use picoserve::make_static;
 use rgb::RGB8;
 use smart_leds::{SmartLedsWriteAsync, brightness, gamma};
 
@@ -15,7 +16,10 @@ pub async fn init_leds(
 ) {
     let rmt = defmt::unwrap!(Rmt::new(rmt, Rate::from_mhz(80))).into_async();
 
-    let buffer = [esp_hal::rmt::PulseCode::default(); LED_BUFFER_SIZE];
+    let buffer = make_static!(
+        [esp_hal::rmt::PulseCode; LED_BUFFER_SIZE],
+        [esp_hal::rmt::PulseCode::default(); LED_BUFFER_SIZE]
+    );
     let neopixel = SmartLedsAdapterAsync::new(rmt.channel0, pin, buffer);
 
     spawner.must_spawn(led_task(neopixel));
