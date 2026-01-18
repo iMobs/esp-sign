@@ -45,7 +45,7 @@ async fn web_task(
     id: usize,
     stack: embassy_net::Stack<'static>,
     app: &'static AppRouter<Application>,
-    config: &'static picoserve::Config<Duration>,
+    config: &'static picoserve::Config,
 ) -> ! {
     let port = 80;
     let mut tcp_rx_buffer = [0; 1024];
@@ -60,7 +60,7 @@ async fn web_task(
 
 pub struct WebApp {
     pub router: &'static Router<<Application as AppBuilder>::PathRouter>,
-    pub config: &'static picoserve::Config<Duration>,
+    pub config: &'static picoserve::Config,
 }
 
 impl Default for WebApp {
@@ -68,7 +68,7 @@ impl Default for WebApp {
         let router = make_static!(AppRouter<Application>, Application.build_app());
 
         let config = make_static!(
-            picoserve::Config::<Duration>,
+            picoserve::Config,
             picoserve::Config::new(picoserve::Timeouts {
                 start_read_request: Some(Duration::from_secs(5)),
                 persistent_start_read_request: Some(Duration::from_secs(1)),

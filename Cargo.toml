@@ -19,7 +19,7 @@ test = false
 [dependencies]
 defmt = "1.0.1"
 esp-bootloader-esp-idf = { version = "0.4.0", features = ["defmt", "esp32c3"] }
-embassy-net = { version = "0.7.1", features = [
+embassy-net = { version = "0.8.0", features = [
   "defmt",
   "dhcpv4",
   "dhcpv4-hostname",
@@ -89,6 +89,7 @@ embedded-test = { version = "0.7.0-alpha.3", git = "https://github.com/probe-rs/
 
 [patch.crates-io]
 esp-hal-smartled = { git = "https://github.com/esp-rs/esp-hal-community" }
+picoserve = { git = "https://github.com/sammhicks/picoserve" }
 
 [profile.dev]
 # Rust debug is too slow.
