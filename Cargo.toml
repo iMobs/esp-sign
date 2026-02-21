@@ -87,10 +87,6 @@ embedded-test = { version = "0.7.0-alpha.3", git = "https://github.com/probe-rs/
   "external-executor",
 ] }
 
-[patch.crates-io]
-esp-hal-smartled = { git = "https://github.com/esp-rs/esp-hal-community" }
-picoserve = { git = "https://github.com/sammhicks/picoserve" }
-
 [profile.dev]
 # Rust debug is too slow.
 # For debug builds always builds with some optimization

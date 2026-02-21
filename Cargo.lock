@@ -741,7 +741,8 @@ dependencies = [
 [[package]]
 name = "esp-hal-smartled"
 version = "0.17.0"
-source = "git+https://github.com/esp-rs/esp-hal-community#8a8734c22b6ce572bc5ee39a101c805ff5a19625"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "23eaae863a73f9bd1626687f539ff38942b442ae3974838ceeae5e932ddf0a2a"
 dependencies = [
  "defmt 1.0.1",
  "document-features",
@@ -1293,7 +1294,8 @@ checksum = "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a"
 [[package]]
 name = "picoserve"
 version = "0.18.0"
-source = "git+https://github.com/sammhicks/picoserve#2e4357a9f3afed93b06cc7e80480d661933ade6a"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3e4976908c758efc04289ad266181f22e252b67daac2710581da9f5aa7a3207a"
 dependencies = [
  "const-sha1",
  "defmt 1.0.1",
@@ -1312,7 +1314,8 @@ dependencies = [
 [[package]]
 name = "picoserve_derive"
 version = "0.1.4"
-source = "git+https://github.com/sammhicks/picoserve#2e4357a9f3afed93b06cc7e80480d661933ade6a"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e18e82b212e47a9df016984abe8da12c179440942c02f57c7badc82f6466a051"
 dependencies = [
  "proc-macro2",
  "quote",
