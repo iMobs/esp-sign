@@ -3,8 +3,6 @@ use embassy_time::Duration;
 use picoserve::{
     AppBuilder, AppRouter, Router, Server, extract::Json, make_static, routing::get_service,
 };
-use rgb::ComponentSlice;
-
 pub struct Application;
 
 impl AppBuilder for Application {
@@ -25,8 +23,9 @@ struct FormData {
 }
 
 async fn set_color(Json(data): Json<FormData>) -> Json<&'static str> {
-    let mut rgb = rgb::RGB8::default();
-    hex::decode_to_slice(&data.color[1..], rgb.as_mut_slice()).unwrap();
+    let mut bytes = [0u8; 3];
+    hex::decode_to_slice(&data.color[1..], &mut bytes).unwrap();
+    let rgb = rgb::RGB8::new(bytes[0], bytes[1], bytes[2]);
     defmt::info!("Setting RGB to: {:?}", rgb);
     crate::RGB_CHANNEL.send(rgb).await;
     Json("ok")
