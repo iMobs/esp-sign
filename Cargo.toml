@@ -79,6 +79,7 @@ rgb = { version = "0.8.53", features = ["defmt-03", "serde"] }
 embassy-sync = "0.8.0"
 embassy-futures = "0.1.2"
 hex = { version = "0.4.3", default-features = false }
+bytemuck = "1.25.0"
 
 [dev-dependencies]
 embedded-test = { version = "0.7.0-alpha.3", git = "https://github.com/probe-rs/embedded-test", branch = "next", features = [

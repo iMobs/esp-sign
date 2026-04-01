@@ -879,6 +879,7 @@ dependencies = [
 name = "esp-sign"
 version = "0.1.0"
 dependencies = [
+ "bytemuck",
  "critical-section",
  "defmt 1.0.1",
  "embassy-executor",
