@@ -1,4 +1,4 @@
 [toolchain]
-channel = "nightly-2026-03-01"
+channel = "nightly-2026-04-01"
 components = ["rust-src", "rustfmt", "clippy"]
 targets = ["riscv32imc-unknown-none-elf"]
