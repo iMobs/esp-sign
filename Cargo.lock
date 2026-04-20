@@ -936,7 +936,7 @@ dependencies = [
  "rtt-target",
  "serde",
  "smart-leds",
- "smoltcp 0.12.0",
+ "smoltcp 0.13.0",
  "static_cell",
  "toml-cfg",
 ]

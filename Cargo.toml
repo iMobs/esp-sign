@@ -49,7 +49,7 @@ esp-radio = { version = "0.17.0", default-features = false, features = [
 ] }
 panic-rtt-target = { version = "0.2.0", features = ["defmt"] }
 rtt-target = { version = "0.6.2", features = ["defmt"] }
-smoltcp = { version = "0.12.0", default-features = false, features = [
+smoltcp = { version = "0.13.0", default-features = false, features = [
   "defmt",
   "medium-ethernet",
   "multicast",
