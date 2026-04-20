@@ -22,7 +22,7 @@ pub async fn init_leds(
     );
     let neopixel = SmartLedsAdapterAsync::new(rmt.channel0, pin, buffer);
 
-    spawner.spawn(led_task(neopixel).unwrap());
+    spawner.spawn(led_task(neopixel)).unwrap();
 }
 
 type Neopixel<'a> = SmartLedsAdapterAsync<'a, LED_BUFFER_SIZE>;

@@ -37,8 +37,8 @@ pub async fn init_wifi(
         net_seed,
     );
 
-    spawner.spawn(connection(controller).unwrap());
-    spawner.spawn(net_task(runner).unwrap());
+    spawner.spawn(connection(controller)).unwrap();
+    spawner.spawn(net_task(runner)).unwrap();
 
     wait_for_connection(stack).await;
 
