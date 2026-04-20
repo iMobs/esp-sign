@@ -18,7 +18,7 @@ test = false
 
 [dependencies]
 defmt = "1.0.1"
-esp-bootloader-esp-idf = { version = "0.4.0", features = ["defmt", "esp32c3"] }
+esp-bootloader-esp-idf = { version = "0.5.0", features = ["defmt", "esp32c3"] }
 embassy-net = { version = "0.9.1", features = [
   "defmt",
   "dhcpv4",
