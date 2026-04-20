@@ -31,19 +31,17 @@ embassy-net = { version = "0.9.1", features = [
 ] }
 embedded-io = { version = "0.7.1", features = ["defmt"] }
 embedded-io-async = { version = "0.7.0", features = ["defmt"] }
-esp-alloc = { version = "0.10.0", features = ["defmt"] }
+esp-alloc = { version = "0.10.0", features = ["defmt", "esp32c3"] }
 esp-hal = { version = "1.0.0", features = ["defmt", "esp32c3", "unstable"] }
 esp-rtos = { version = "0.2.0", features = [
   "defmt",
   "embassy",
-  "esp-alloc",
   "esp-radio",
   "esp32c3",
 ] }
 
-esp-radio = { version = "0.17.0", features = [
+esp-radio = { version = "0.17.0", default-features = false, features = [
   "defmt",
-  "esp-alloc",
   "esp32c3",
   "smoltcp",
   "unstable",

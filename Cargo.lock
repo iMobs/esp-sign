@@ -639,22 +639,6 @@ checksum = "877a4ace8713b0bcf2a4e7eec82529c029f1d0619886d18145fea96c3ffe5c0f"
 
 [[package]]
 name = "esp-alloc"
-version = "0.9.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "641e43d6a60244429117ef2fa7a47182120c7561336ea01f6fb08d634f46bae1"
-dependencies = [
- "allocator-api2",
- "cfg-if",
- "document-features",
- "enumset",
- "esp-config 0.6.1",
- "esp-sync 0.1.1",
- "linked_list_allocator",
- "rlsf",
-]
-
-[[package]]
-name = "esp-alloc"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "46ced060d4085858283df950b80a4da2348e1707d7d07b1e966308582dae79f5"
@@ -853,7 +837,6 @@ dependencies = [
  "embedded-io-async 0.6.1",
  "embedded-io-async 0.7.0",
  "enumset",
- "esp-alloc 0.9.0",
  "esp-config 0.6.1",
  "esp-hal",
  "esp-hal-procmacros 0.21.0",
@@ -915,7 +898,6 @@ dependencies = [
  "embassy-sync 0.7.2",
  "embassy-time-driver",
  "embassy-time-queue-utils",
- "esp-alloc 0.9.0",
  "esp-config 0.6.1",
  "esp-hal",
  "esp-hal-procmacros 0.21.0",
@@ -939,7 +921,7 @@ dependencies = [
  "embedded-io 0.7.1",
  "embedded-io-async 0.7.0",
  "embedded-test",
- "esp-alloc 0.10.0",
+ "esp-alloc",
  "esp-bootloader-esp-idf",
  "esp-hal",
  "esp-hal-smartled",
