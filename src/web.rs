@@ -36,7 +36,7 @@ pub async fn init_web(stack: embassy_net::Stack<'static>, spawner: &embassy_exec
     let web_app = WebApp::default();
 
     for id in 0..WEB_TASK_POOL_SIZE {
-        spawner.must_spawn(web_task(id, stack, web_app.router, web_app.config));
+        spawner.spawn(web_task(id, stack, web_app.router, web_app.config).unwrap());
     }
 }
 
